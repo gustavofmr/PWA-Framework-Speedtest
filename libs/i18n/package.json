@@ -1,0 +1,8 @@
+{
+  "name": "@vst/i18n",
+  "version": "1.1.2",
+  "dependencies": {
+    "@vst/api": "^1.1.2",
+    "dayjs": "^1.10.4"
+  }
+}

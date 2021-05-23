@@ -1,0 +1,409 @@
+{
+  "version": 1,
+  "cli": {
+    "defaultCollection": "@nrwl/next"
+  },
+  "schematics": {
+    "@nrwl/workspace": {
+      "library": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/cypress": {
+      "cypress-project": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/react": {
+      "application": {
+        "linter": "eslint",
+        "babel": true
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "style": "styled-components",
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/web": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/node": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/nx-plugin": {
+      "plugin": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/nest": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/express": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      }
+    }
+  },
+  "projects": {
+    "i18n": {
+      "root": "libs/i18n",
+      "sourceRoot": "libs/i18n/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/web:package",
+          "options": {
+            "outputPath": "dist/libs/i18n",
+            "tsConfig": "libs/i18n/tsconfig.lib.json",
+            "project": "libs/i18n/package.json",
+            "entryFile": "libs/i18n/src/index.ts",
+            "external": [],
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+            "assets": [
+              {
+                "glob": "README.md",
+                "input": "./libs/i18n",
+                "output": "."
+              }
+            ],
+            "buildableProjectDepsInPackageJsonType": "dependencies",
+            "updateBuildableProjectDepsInPackageJson": false
+          },
+          "outputs": ["{options.outputPath}"]
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/i18n/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/i18n"],
+          "options": {
+            "jestConfig": "libs/i18n/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api": {
+      "root": "libs/api",
+      "sourceRoot": "libs/api/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/web:package",
+          "options": {
+            "globals": [
+              {
+                "moduleId": "dayjs",
+                "global": "dayjs"
+              },
+              {
+                "moduleId": "react/jsx-runtime",
+                "global": "jsxRuntime"
+              }
+            ],
+            "outputPath": "dist/libs/api",
+            "tsConfig": "libs/api/tsconfig.lib.json",
+            "project": "libs/api/package.json",
+            "entryFile": "libs/api/src/index.ts",
+            "external": ["react", "react-dom", "react-is"],
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+            "assets": [
+              {
+                "glob": "README.md",
+                "input": "./libs/api",
+                "output": "."
+              }
+            ],
+            "buildableProjectDepsInPackageJsonType": "dependencies",
+            "updateBuildableProjectDepsInPackageJson": false
+          },
+          "outputs": ["{options.outputPath}"]
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api"],
+          "options": {
+            "jestConfig": "libs/api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "cli": {
+      "root": "packages/cli",
+      "sourceRoot": "packages/cli/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["packages/cli/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/cli"],
+          "options": {
+            "jestConfig": "packages/cli/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/packages/cli",
+            "tsConfig": "packages/cli/tsconfig.lib.json",
+            "packageJson": "packages/cli/package.json",
+            "main": "packages/cli/index.ts",
+            "assets": [
+              "packages/cli/*.md",
+              {
+                "input": "./packages/cli",
+                "glob": "**/!(jest.config).js",
+                "output": "."
+              },
+              {
+                "input": "./packages/cli",
+                "glob": "**/*.d.ts",
+                "output": "."
+              },
+              {
+                "input": "./packages/cli",
+                "glob": "**/*__tmpl__",
+                "output": "."
+              },
+              {
+                "input": "./packages/cli",
+                "glob": "**/!(tsconfig*).json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "beam": {
+      "root": "libs/beam",
+      "sourceRoot": "libs/beam/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/beam/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/beam"],
+          "options": {
+            "jestConfig": "libs/beam/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "builder": "@nrwl/web:package",
+          "options": {
+            "outputPath": "dist/libs/beam",
+            "tsConfig": "libs/beam/tsconfig.lib.json",
+            "project": "libs/beam/package.json",
+            "entryFile": "libs/beam/index.ts",
+            "external": [],
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+            "assets": [
+              {
+                "glob": "README.md",
+                "input": "./libs/beam",
+                "output": "."
+              },
+              {
+                "glob": "styles/**.(css|css.map)",
+                "input": "./libs/beam/src",
+                "output": "style"
+              },
+              {
+                "glob": "*.scss",
+                "input": "./libs/beam/src/sass/theme",
+                "output": "sass/theme"
+              },
+              {
+                "glob": "*.scss",
+                "input": "./libs/beam/src/sass/utils",
+                "output": "sass/utils"
+              },
+              {
+                "glob": "index.scss",
+                "input": "./libs/beam/src",
+                "output": "."
+              }
+            ],
+            "buildableProjectDepsInPackageJsonType": "dependencies",
+            "updateBuildableProjectDepsInPackageJson": false,
+            "extractCss": true
+          },
+          "outputs": ["{options.outputPath}"]
+        }
+      }
+    },
+    "speedtest-app": {
+      "root": "apps/speedtest-app",
+      "sourceRoot": "apps/speedtest-app",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/next:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "root": "apps/speedtest-app",
+            "outputPath": "dist/apps/speedtest-app"
+          },
+          "configurations": {
+            "production": {}
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/next:server",
+          "options": {
+            "buildTarget": "speedtest-app:build",
+            "dev": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "speedtest-app:build:production",
+              "dev": false
+            }
+          }
+        },
+        "export": {
+          "builder": "@nrwl/next:export",
+          "options": {
+            "buildTarget": "speedtest-app:build:production"
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/speedtest-app"],
+          "options": {
+            "jestConfig": "apps/speedtest-app/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/speedtest-app/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "apps/speedtest-app/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/speedtest-app",
+            "config": {
+              "configFolder": "apps/speedtest-app/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "speedtest-app-e2e": {
+      "root": "apps/speedtest-app-e2e",
+      "sourceRoot": "apps/speedtest-app-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/speedtest-app-e2e/cypress.json",
+            "tsConfig": "apps/speedtest-app-e2e/tsconfig.e2e.json",
+            "devServerTarget": "speedtest-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "speedtest-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/speedtest-app-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "speedtest": {
+      "root": "libs/speedtest",
+      "sourceRoot": "libs/speedtest/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/speedtest/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/speedtest"],
+          "options": {
+            "jestConfig": "libs/speedtest/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  }
+}

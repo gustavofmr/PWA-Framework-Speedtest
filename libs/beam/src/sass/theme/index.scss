@@ -1,0 +1,19 @@
+@use './dark';
+@use './light';
+
+@use '../utils/colors';
+
+// Set default to light theme
+$colors: map-merge(colors.$raw-colors, light.$theme-colors);
+@include colors.gen-default-theme-colors($colors);
+
+// Allow switching theme using class
+.dark {
+  @include colors.gen-custom-props(dark.$theme-colors);
+  @include colors.gen-colors-util-classes(dark.$theme-colors);
+}
+
+.light {
+  @include colors.gen-custom-props(light.$theme-colors);
+  @include colors.gen-colors-util-classes(light.$theme-colors);
+}

@@ -1,0 +1,6 @@
+@use '../utils/colors';
+
+$theme-colors: (
+  'app-background': map-get(colors.$raw-colors, 'gray900'),
+  'main-text-color': map-get(colors.$raw-colors, 'gray100'),
+);

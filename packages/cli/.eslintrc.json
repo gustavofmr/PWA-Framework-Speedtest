@@ -1,0 +1,25 @@
+{
+  "extends": ["../../.eslintrc.json"],
+  "ignorePatterns": ["!**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "parserOptions": {
+        "project": ["packages/cli/tsconfig.*?.json"]
+      },
+      "rules": {}
+    },
+    {
+      "files": ["**/*.ts"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          "@nrwl/workspace",
+          "@angular-devkit/core",
+          "@angular-devkit/schematics",
+          "@angular-devkit/architect"
+        ]
+      }
+    }
+  ]
+}

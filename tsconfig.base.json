@@ -1,0 +1,30 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es5",
+    "module": "esnext",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["esnext", "dom", "dom.iterable"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@vst/i18n": ["libs/i18n/src/index.ts"],
+      "@vst/api": ["libs/api/src/index.ts"],
+      "@vst/api/billing": ["libs/api/src/billing/index.ts"],
+      "@vst/api/identity": ["libs/api/src/identity/index.ts"],
+      "@vst/api/product": ["libs/api/src/products/index.ts"],
+      "@vst/api/core": ["libs/api/src/core/index.ts"],
+      "@vst/beam/*": ["libs/beam/src/*"],
+      "@vst/speedtest": ["libs/speedtest/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

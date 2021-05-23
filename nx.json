@@ -1,0 +1,38 @@
+{
+  "implicitDependencies": {
+    "workspace.json": "*",
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*",
+    ".eslintrc.json": "*"
+  },
+  "affected": { "defaultBase": "master" },
+  "npmScope": "vst",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e",
+          "build-storybook"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "i18n": { "tags": [] },
+    "api": { "tags": [] },
+    "cli": { "tags": [] },
+    "beam": { "tags": [] },
+    "speedtest-app": { "tags": [] },
+    "speedtest-app-e2e": {
+      "tags": [],
+      "implicitDependencies": ["speedtest-app"]
+    },
+    "speedtest": { "tags": [] }
+  }
+}

@@ -1,0 +1,114 @@
+@use "sass:map";
+
+$raw-colors: (
+  'gray100': #f2f5f8,
+  'gray200': #dee4e8,
+  'gray300': #c3cdd5,
+  'gray400': #9fafbc,
+  'gray500': #677a89,
+  'gray600': #465967,
+  'gray700': #32424e,
+  'gray800': #202e39,
+  'gray900': #141d24,
+  'blue100': #ccf0ff,
+  'blue200': #9be1ff,
+  'blue300': #64c3fb,
+  'blue400': #14b9ff,
+  'blue500': #009de0,
+  'blue600': #006ead,
+  'blue700': #00528c,
+  'blue800': #003f73,
+  'teal100': #c6fcff,
+  'teal200': #8bf6ff,
+  'teal300': #18ecfc,
+  'teal400': #00c2de,
+  'teal500': #00a2c0,
+  'teal600': #00819d,
+  'teal700': #006a85,
+  'teal800': #005b75,
+  'green100': #ddfa96,
+  'green200': #c5f042,
+  'green300': #a4d810,
+  'green400': #7dbe00,
+  'green500': #5ea215,
+  'green600': #358000,
+  'green700': #1d5700,
+  'violet100': #d9d1fa,
+  'violet200': #baa8f0,
+  'violet300': #9678f2,
+  'violet400': #724ae8,
+  'violet500': #562bda,
+  'violet600': #3a1b98,
+  'violet700': #29126d,
+  'pink100': #fccfef,
+  'pink200': #f9aae4,
+  'pink300': #ea7bce,
+  'pink400': #d417af,
+  'pink500': #ad258b,
+  'pink600': #7d1364,
+  'pink700': #570a46,
+  'warm100': #ffe9b3,
+  'warm200': #ffdb7d,
+  'warm300': #ffb029,
+  'warm400': #ef8201,
+  'warm500': #cf4520,
+  'warm600': #a82200,
+  'warm700': #86090f,
+  'success100': #f0f7e0,
+  'success200': #7dbe00,
+  'success300': #5ea215,
+  'success400': #358000,
+  'info100': #dee4e8,
+  'info200': #c3cdd5,
+  'info300': #9fafbc,
+  'info400': #677a89,
+  'alert100': #ffede9,
+  'alert200': #e02c2c,
+  'alert300': #b72025,
+  'alert400': #86090f,
+  'warning100': #fff5dd,
+  'warning200': #ffb029,
+  'warning300': #ff8300,
+  'warning400': #cf4520,
+  'info2100': #e8f8ff,
+  'info2200': #9be1ff,
+  'info2300': #14b9ff,
+  'info2400': #006ead,
+);
+
+$prefix: 'beam-' !default;
+$custom-prop-prefix: '--#{$prefix}color-' !default;
+$class-color-prefix: '.#{$prefix}color--' !default;
+$class-bg-prefix: '.#{$prefix}bg--' !default;
+
+@function get-custom-prop-name($key) {
+  @return #{$custom-prop-prefix}#{$key};
+}
+
+@function get-key-from-custom-prop-name($str) {
+  @return string.slice($str, string.length($custom-prop-prefix));
+}
+
+@mixin gen-custom-props($colors) {
+  @each $key, $hex in $colors {
+    #{get-custom-prop-name($key)}: #{$hex};
+  }
+}
+
+@mixin gen-colors-util-classes($colors) {
+  @each $key, $hex in $colors {
+    #{$class-color-prefix}#{$key} {
+      color: var(#{get-custom-prop-name($key)});
+    }
+    #{$class-bg-prefix}#{$key} {
+      background: var(#{get-custom-prop-name($key)});
+    }
+  }
+}
+
+@mixin gen-default-theme-colors($colors) {
+  :root {
+    @include gen-custom-props($colors);
+  }
+  @include gen-colors-util-classes($colors);
+}

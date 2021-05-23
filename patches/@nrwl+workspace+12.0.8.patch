@@ -1,0 +1,13 @@
+diff --git a/node_modules/@nrwl/workspace/src/command-line/workspace-generators.js b/node_modules/@nrwl/workspace/src/command-line/workspace-generators.js
+index c3ca0d4..bae4d38 100644
+--- a/node_modules/@nrwl/workspace/src/command-line/workspace-generators.js
++++ b/node_modules/@nrwl/workspace/src/command-line/workspace-generators.js
+@@ -60,7 +60,7 @@ function compileTools() {
+     return generatorsOutDir;
+ }
+ function getToolsOutDir() {
+-    return path.resolve(toolsDir(), toolsTsConfig().compilerOptions.outDir);
++    return path.resolve(toolsDir(), toolsTsConfig().compilerOptions.outDir, 'tools');
+ }
+ function compileToolsDir(outDir) {
+     fs_extra_1.copySync(generatorsDir(), path.join(outDir, 'generators'));

@@ -1,0 +1,27 @@
+@use './colors';
+@use './spacings';
+@use '../theme/dark';
+@use '../theme/light';
+@use "sass:map";
+
+@mixin map-to-props($map, $prefix: '') {
+  @if type-of($map) == map {
+    @each $prop, $value in $map {
+      @if type-of($value) != map {
+        @if inspect($prop) != 'description' {
+          #{inspect(#{$prefix}#{$prop})}: #{inspect($value)};
+        }
+      } @else {
+        @include map-to-props($value);
+      }
+    }
+  }
+}
+
+// Set default to light theme
+$colors: map-merge(colors.$raw-colors, light.$theme-colors);
+
+:export {
+  @include map-to-props($colors, colors.$custom-prop-prefix);
+  @include map-to-props(spacings.$spacings, '--beam-spacings-');
+}

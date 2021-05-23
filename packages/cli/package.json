@@ -1,0 +1,12 @@
+{
+  "name": "@vst/cli",
+  "version": "1.1.2",
+  "description": "CLI for Viasat Next.js based application",
+  "main": "index.js",
+  "author": "Viasat",
+  "schematics": "./collection.json",
+  "dependencies": {
+    "@nrwl/next": "11.6.2",
+    "@nrwl/storybook": "11.6.2"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "@vst/beam",
+  "version": "1.1.2",
+  "main": "index.js",
+  "author": "Viasat"
+}

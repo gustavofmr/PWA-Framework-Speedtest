@@ -1,0 +1,10 @@
+// Project-scoped code snippets
+
+{
+  "React namespace import": {
+    "scope": "typescript,typescriptreact",
+    "prefix": "react namespace import",
+    "body": ["import * as React from 'react'", "$0"],
+    "description": "Import React using the namespace syntax"
+  }
+}

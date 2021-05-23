@@ -1,0 +1,161 @@
+import { ApiClientProvider, useGetOffers } from '@vst/api';
+import { formatMoney } from '@vst/i18n';
+import React from 'react';
+
+const paramsMock = {
+  location: { address: { country: 'ES' } },
+  partyId: '',
+};
+
+export const APIPreview = () => {
+  const { data } = useGetOffers(paramsMock);
+  return data ? <pre>{JSON.stringify(data, undefined, 2)}</pre> : null;
+};
+
+export const Index = () => {
+  return (
+    <>
+      <style jsx global>{`
+        body {
+          margin: 0;
+          background-color: #f2f5f8;
+          font-family: 'Source Sans Pro';
+        }
+
+        h1 {
+          color: #0aa5ab;
+        }
+
+        h2 {
+          color: #016ead;
+        }
+
+        h3,
+        h4,
+        h5 {
+          color: #016ead;
+          font-size: 21px;
+          margin: 14px 0;
+        }
+
+        p {
+          font-size: 19px;
+        }
+
+        pre {
+          background-color: #202e39;
+          opacity: 0.8;
+          padding: 8px 12px 10px;
+          color: #f2f5f8;
+          border-radius: 8px;
+          font-size: 16px;
+        }
+
+        main {
+          margin: 0 auto;
+          max-width: 800px;
+        }
+
+        details {
+          font-size: 21px;
+          color: #202e39;
+        }
+
+        .preview {
+          border: 2px solid #0aa5ab;
+          border-radius: 8px;
+          padding: 20px;
+          margin: 6px 0 12px;
+          background-color: white;
+        }
+      `}</style>
+      <main>
+        <h1>Welcome in <%= name %></h1>
+        <h2>App</h2>
+        <p>Your app is available in "apps/<%= name %>" directory.</p>
+        <p>
+          App is based on <a href="https://nextjs.org/">Next.js</a>. If you are
+          not familiar with the framework head out to{' '}
+          <a href="https://nextjs.org/docs/basic-features/pages">docs</a>.
+        </p>
+        <h2>PWA Framework</h2>
+        <p>
+          Small, single responsibility libraries are the core of the framework.
+          They provide common utilities, components and API clients for building
+          Viasat web app. Check libraries listed below for their usage.
+        </p>
+        <h3>Libraries</h3>
+        <section>
+          <details>
+            <summary>@vst/i18n</summary>
+            <p>
+              Library for handling internationalization. That's translations,
+              date/time formatting and price formatting.
+            </p>
+            <h5>Usage</h5>
+            <pre>
+              {`import { formatMoney } from '@vst/i18n'
+
+const price = formatMoney({ value: 1250, currency: 'PLN' })
+console.log(price)`}
+            </pre>
+            <h5>Result</h5>
+            <div className="preview">
+              {formatMoney({ value: 1250, currency: 'PLN' })}
+            </div>
+          </details>
+        </section>
+        <section>
+          <details>
+            <summary>@vst/api</summary>
+            <p>
+              Library for easy consumptions of Vega APIs (eg. identity, billing,
+              offers). Consumption in the React app through API Client context
+              and hooks for endpoints.
+            </p>
+            <h5>Usage</h5>
+            <pre>{`// Wrap component tree using hooks with <ApiClientProvider apiUrl="<url_here>">
+
+// inside components you can then use hooks from this library
+const { data, loading, error } = useGetOffers(params);
+
+render <pre>{JSON.stringify(data, undefined, 2)}</pre>
+`}</pre>
+            <h5>Result</h5>
+            <div className="preview">
+              <ApiClientProvider apiUrl="https://apis.vega-preprod.viasat.io/v1">
+                <APIPreview />
+              </ApiClientProvider>
+            </div>
+          </details>
+        </section>
+        <h2>Commands</h2>
+        <p>
+          <a href="https://nx.dev">Nx</a> unifies commands in repository. For
+          every application/library use the same commands.
+        </p>
+        <p>
+          Start - development: <pre>nx serve <%= name %></pre>
+        </p>
+        <p>
+          Build: <pre>nx build <%= name %> --configuration=production</pre>
+        </p>
+        <p>
+          Start - production app:{' '}
+          <pre>nx serve <%= name %> --configuration=production</pre>
+        </p>
+        <p>
+          Unit tests: <pre>nx test <%= name %></pre>
+        </p>
+        <p>
+          E2E tests: <pre>nx e2e <%= name %>-e2e [--watch]</pre>
+        </p>
+        <p>
+          Storybook <pre>nx storybook <%= name %></pre>
+        </p>
+      </main>
+    </>
+  );
+};
+
+export default Index;
