@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "nx": "nx",
-    "start": "nodejs ./heroku-start.js",
+    "start": "npx ./heroku-start.js",
     "build": "nx build speedtest-app",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",
