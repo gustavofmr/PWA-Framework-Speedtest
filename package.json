@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "nx": "nx",
-    "start": "ns server speedtest-app -p $PORT",
+    "start": "nx server speedtest-app -p $PORT",
     "build": "nx build speedtest-app",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",
