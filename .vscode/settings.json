@@ -28,5 +28,6 @@
     "text",
     "unmount",
     "viasat"
-  ]
+  ],
+  "git.ignoreLimitWarning": true
 }
