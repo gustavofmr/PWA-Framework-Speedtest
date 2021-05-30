@@ -150,11 +150,7 @@ export const Index = () => {
 
             <div className="col-md-4 col-md-offset-3">
 
-            <Link href="/statistics">
-
               <Button type="button" className="btn-block"> View old measurements</Button>
-
-            </Link>
 
             </div>
 

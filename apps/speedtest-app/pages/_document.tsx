@@ -11,6 +11,10 @@ export default class CustomDocument extends Document {
     return (
       <Html>
         <Head>
+
+          <link rel="manifest" href="/manifest.json" />
+          <link rel="apple-touch-icon" href="/logo-96x96.png" />
+          <meta name="apple-mobile-web-app-status-bar" content="#90cdf4" />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&family=Material+Icons&display=swap"
