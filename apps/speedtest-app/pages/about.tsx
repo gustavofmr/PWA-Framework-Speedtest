@@ -64,7 +64,7 @@ export const About = () => {
             </p>
             <h2>Features</h2>
             <p>
-              The app can record old measurements and generate a chart of these records. It also can send you push notifications to remind you to test regularly.
+              The app can record old measurements and generate a chart of these records. It also can send you push notifications (not implemented yet) to remind you to test regularly.
             </p>
             <h2>ANATEL standard</h2>
             <p>

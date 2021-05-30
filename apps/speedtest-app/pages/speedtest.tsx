@@ -7,7 +7,7 @@ import Link from 'next/link'
 export const Speedtest_page = () => {
   
 
-  function I(i){return document.getElementById(i);}
+  function I(i){return document.getElementById(i);}s
 
   function Speedtest() {
     this._serverList = []; //when using multiple points of test, this is a list of test points
@@ -346,7 +346,7 @@ export const Speedtest_page = () => {
     
   function salva_medidas(){
     var conn_ = uiData.clientIp;
-    var isp_ = conn_.slice(conn_.indexOf("-"),conn_.lastIndexOf("-"));
+    var isp_ = conn_.slice(conn_.indexOf("-")+2,conn_.lastIndexOf(","));
     var ip_ = conn_.slice(0,conn_.indexOf("-"));
     var ping_ = format(uiData.pingStatus);
     var jitter_ = format(uiData.jitterStatus);
@@ -354,15 +354,26 @@ export const Speedtest_page = () => {
     var uspeed_ = format(uiData.ulStatus);
     var timestamp_ = new Date();
 
-    var memo = Window.sessionStorage
-    if(memo.getItem('measurements') === null){
-      memo.setItem('measurements',{"12r56uybj2":[1,2]}) 
+    var memo = window.localStorage
+    Storage.prototype.setObject = function(key, value) {
+      this.setItem(key, JSON.stringify(value));
     }
-    if(memo.getItem('measurements')[isp_] === null){
-      memo.getItem('measurements')[isp_] = [{"ip":ip_,"ping":ping_,"jitter":jitter_,"ds":dspeed_,"ul":uspeed_,"datetime":timestamp_}];
+  
+    Storage.prototype.getObject = function(key) {
+      return JSON.parse(this.getItem(key));
+    }
+
+    const data_ = {"ip":ip_,"ping":ping_,"jitter":jitter_,"ds":dspeed_,"ul":uspeed_,"datetime":timestamp_}
+    var array_ = [];
+    memo.setItem("last_isp",isp_)
+    if(memo.getItem(isp_) === null){
+      array_.push(data_)
+      memo.setObject(isp_,array_);
     }
     else{
-      memo.getItem('measurements')[isp_].push({"ip":ip_,"ping":ping_,"jitter":jitter_,"ds":dspeed_,"ul":uspeed_,"datetime":timestamp_});
+      var temp_ = memo.getObject(isp_);
+      temp_.push(data_)
+      memo.setObject(isp_,temp_);
     }
   }
 
