@@ -4,6 +4,7 @@ import Link from 'next/link'
 
 
 
+
 export const About = () => {
 
     function I(i){return document.getElementById(i);}
@@ -137,6 +138,9 @@ export const About = () => {
               font-size: 21px;
               color: #202e39;
             }
+            .botaohome{
+                margin: 12px
+            }
             .preview {
               border: 2px solid #0aa5ab;
               border-radius: 8px;
@@ -145,6 +149,12 @@ export const About = () => {
               background-color: white;
             }
           `}</style>
+
+          <Link href="/">
+
+            <Button type="button" className="botaohome"> Home</Button>
+
+          </Link>
           <main>
             <h1>My measurements</h1>
             <p>Here you can see statistics for the last ISP you took the test.</p>

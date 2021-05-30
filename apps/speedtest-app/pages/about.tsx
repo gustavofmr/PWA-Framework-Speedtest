@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link'
-
+import { Button } from "reactstrap";
 
 export const About = () => {
     return (
@@ -50,7 +50,15 @@ export const About = () => {
               margin: 6px 0 12px;
               background-color: white;
             }
+            .botaohome{
+              margin: 12px
+            }
           `}</style>
+          <Link href="/">
+
+            <Button type="button" className="botaohome"> Home</Button>
+
+          </Link>
           <main>
             <h1>About the GFM Speed Test</h1>
             <h2>App</h2>

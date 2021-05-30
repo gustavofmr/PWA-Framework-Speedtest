@@ -65,7 +65,9 @@ export const Index = () => {
           font-size: 21px;
           color: #202e39;
         }
-
+        .botaohome{
+          margin: 12px
+        }
         .preview {
           border: 2px solid #0aa5ab;
           border-radius: 8px;

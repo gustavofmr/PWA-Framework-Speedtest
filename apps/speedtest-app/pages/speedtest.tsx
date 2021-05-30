@@ -1,6 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link'
+import { Button } from "reactstrap";
 
 
 
@@ -408,6 +409,10 @@ export const Speedtest_page = () => {
         <link rel="stylesheet" href="speedtest.css" />
       </Head>
       <style jsx global>{`
+
+            .botaohome{
+              margin: 12px
+            }
             body {
               margin: 0;
               background-color: #f2f5f8;
@@ -453,6 +458,11 @@ export const Speedtest_page = () => {
               background-color: white;
             }
           `}</style>
+          <Link href="/">
+
+            <Button type="button" className="botaohome"> Home</Button>
+
+          </Link>
       <main>
         <h1>Connection measurement</h1>
         <div id="testWrapper">
